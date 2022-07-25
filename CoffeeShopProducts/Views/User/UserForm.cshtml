@@ -1,0 +1,51 @@
+﻿@model List<Product>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    //CoffeeShopDBContext context = new CoffeeShopDBContext();
+    //List<User> alreadyRegistered = new List<User>();
+    //List<string> emailInUse = new List<string>();
+    //foreach(User u in context.Users)
+    //{
+    //    emailInUse.Add(u.Email);
+    //}
+    
+    //alreadyRegistered.ForEach(u => emailInUse.Add(u.Email));
+}
+<h1>Fill out the form below to complete your registration.</h1>
+<form method="post" asp-action="AddUser">
+<div class="column">
+      <div class="row">
+      <label for="FirstName">First Name:</label>
+      <input type="text" id="FirstName" name="FirstName" pattern="\b([A-ZÀ-ÿ][a-z]*)+" placeholder="John" required />
+      <p>&nbsp;</p>
+      <label for="Lastname">Last Name:</label>
+      <input type="text" id="LastName" name="LastName" pattern="\b([A-ZÀ-ÿ][a-z]*)+" placeholder="Doe" required />
+      <p>&nbsp;</p>
+      <label for="Email">Email:</label>
+      <input type="text" id="Email" name="Email" pattern="^[a-zA-Z0-9+_.-]+@@[a-zA-Z0-9.-]+$" placeholder="name@example.com" required />
+      <p>&nbsp;</p>
+       <label for="Password">Password:</label>
+    <input type="password" id="Password" name="Password" placeholder="password" required ) />
+    <p>&nbsp;</p>
+    <label for="FavDrink">Choose your favorite drink:</label>
+    <select name="FavDrink" id="FavDrink" required>
+        <option value="" disabled selected hidden>Choose a drink</option>
+                @{
+                    foreach(Product p in Model)
+                    {
+                        if (p.Category.Contains("Drink"))
+                        {
+                                <option value="@p.Id">@p.Name</option>
+                        }
+                    }
+                }
+    </select>
+    <p>&nbsp;</p>
+    <input type="submit" />
+    </div>
+</div>
+</form>

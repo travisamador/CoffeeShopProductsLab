@@ -1,0 +1,13 @@
+﻿@model List<Product>
+
+<h1 class="text-center">Sandwiches</h1>
+@{
+    foreach(Product p in Model)
+    {
+        if(p.Category == "Sandwich")
+        {
+            <a style="color: white; text-align:center; display: block; margin: auto; width: 100%; font-size:larger" asp-controller="Product" as asp-action="ProductDetail" asp-route-productId="@p.Id" >@p.Name $@p.Price</a>
+            <br/>
+        }
+    }
+}
